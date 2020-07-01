@@ -1,0 +1,4 @@
+{{ form_start(form) }}
+    {{ form_row(form.commentaire, { 'label': 'Ajouter un commentaire' }) }}
+    <button class="btn">{{ button_label|default('Publier') }}</button>
+{{ form_end(form) }}

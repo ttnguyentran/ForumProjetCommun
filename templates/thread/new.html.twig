@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Forum{% endblock %}
+
+{% block body %}
+
+    {{ include('thread/_form.html.twig') }}
+
+    <a href="{{ path('thread_index') }}">Retour</a>
+{% endblock %}

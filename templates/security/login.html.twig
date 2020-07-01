@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <div class="card" style="width: 80%;margin: auto">
+		<div class="card-body">
+			<h5 class="card-title">Connexion</h5>
+
+			<label for="inputPseudo">Pseudo</label>
+			<input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required>
+			<label for="inputPassword">Password</label>
+			<input type="password" name="password" id="inputPassword" class="form-control" required>
+					
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+			<input type="submit" value="Valider" class="btn btn-primary">
+		</div>
+	</div>
+
+</form>
+{% endblock %}

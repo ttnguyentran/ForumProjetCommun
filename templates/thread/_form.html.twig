@@ -1,0 +1,5 @@
+{{ form_start(form) }}
+    {{ form_row(form.thread, { 'label': 'Titre' }) }}
+    {{ form_row(form.content, { 'label': 'Contenu' }) }}
+    <button class="btn">{{ button_label|default('Publier') }}</button>
+{{ form_end(form) }}

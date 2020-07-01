@@ -1,0 +1,4 @@
+{{ form_start(form) }}
+    {{ form_row(form.thread, { 'label': 'Rechercher...' }) }}
+    <button class="btn">{{ button_label|default('Entrer') }}</button>
+{{ form_end(form) }}

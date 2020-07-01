@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %} Forum {% endblock %}</title>
+		<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+		<style>
+			.app-bold{
+				font-weight: bold;
+			}
+			
+			body {
+				background-image: url(https://wallpaperaccess.com/full/124383.jpg);
+			}
+
+		</style>
+		{% block stylesheets %}{% endblock %}
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="{{ path('homepage') }}" style="font-weight: bold;">Forum</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="justify-content-center">
+				<div class="collapse navbar-collapse" id="navbarText">
+					<ul class="navbar-nav mr-auto">
+
+						{% if not app.user %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('thread_index') }}">Index</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
+							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_register') }}">S'enregistrer</a>
+							</li>
+
+						{% elseif app.user %}
+						
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('thread_index') }}">Index</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('thread_user') }}">Mes Publications</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+							</li>
+
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="card" style="width: 80%;margin: auto">
+			<div class="card-body">
+				{% block body %}{% endblock %}
+				{% block javascripts %}{% endblock %}
+			</div>
+		</div>
+		<hr>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Forum{% endblock %}
+
+{% block body %}
+    <h1>Résultat</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Titre</th>
+				<th>Auteur</th>
+				<th>Date de publication</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for thread in threads %}
+            <tr>
+                <td>{{ thread.thread }}</td>
+				<td>{{ thread.username }}</td>
+				<td>{{ thread.publication }}</td>
+                <td>
+                    <a href="{{ path('thread_show', {'id': thread.id}) }}">Consulter</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">aucun résultat...</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+	<a href="{{ path('homepage') }}">Retour</a>
+	
+{% endblock %}

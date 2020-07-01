@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Forum{% endblock %}
+
+{% block body %}
+    <div class="card" style="width: 80%;margin: auto">
+		<div class="card-body">
+			<h5 class="card-title">{{ thread.thread }}</h5>
+			<p>Publié par <span class="app-bold">{{ thread.username }}</span><span>&emsp;&emsp;</span>{{ thread.publication }}</p>
+			<h6>{{ thread.content }}</h6>
+		</div>
+	</div>	
+	<br>
+	<br>
+	{% for commentaire in commentaires %}
+		<div class="card" style="width: 80%;margin: auto">
+			<div class="card-body">
+				<p><span class="app-bold">{{ commentaire.username }}</span> a commenté le {{ commentaire.publication }}</p>
+				<h6>{{ commentaire.commentaire }}</h6>
+			</div>
+		</div>	
+		<br>
+	{% else %}
+        <p style="text-align: center;">aucun commentaire</p>
+    {% endfor %}	
+	<br>
+	{% if app.user %}
+		{{ include('thread/_form_commentaire.html.twig') }}
+	{% endif %}		
+	<a href="{{ path('thread_index') }}">Retour</a>
+{% endblock %}	
